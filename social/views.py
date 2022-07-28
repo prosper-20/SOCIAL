@@ -11,8 +11,17 @@ class PostListView(View):
         posts = Post.objects.all().order_by('-created_on')
         form = PostForm()
 
+
+
         context = {
             'posts': posts,
             'form': form
         }
         return render(request, 'social/post_list.html', context)
+
+    def post(self, request, *args, **kwargs):
+        posts = Post.objects.all().order_by('-created_on')
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            
