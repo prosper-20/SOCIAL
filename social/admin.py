@@ -6,4 +6,4 @@ from .models import Post
 class PostAdmin(admin.ModelAdmin):
     list_display = ["created_on", "author"]
 
-admin.site.register(PostAdmin, Post)
+admin.site.register(Post, PostAdmin)
