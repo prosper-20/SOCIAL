@@ -56,7 +56,12 @@ class PostEditView(UpdateView):
 
     def get_success_url(self):
         pk = self.kwargs["pk"]
-        return reverse_lazy('detail', kwargs={"pk": pk})
+        return reverse_lazy('post-detail', kwargs={"pk": pk})
+
+class PostDeldtdView(DeleteView):
+    model = Post
+    template_name = "social/post_delete.html"
+    success_url = reverse_lazy("post-list")
 
             
 
