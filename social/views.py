@@ -1,5 +1,4 @@
-import imp
-from re import S
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
 from django.views import View
 from .models import Post, Comment
@@ -95,7 +94,7 @@ class CommentDeleteView(DeleteView):
     
     def get_success_url(self):
         pk = self.kwargs["pk"]
-        return reverse_lazy('post_detail', kwargs={"pk":pk})
+        return reverse_lazy('post-detail', kwargs={"pk":pk})
 
 
             
