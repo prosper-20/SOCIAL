@@ -58,7 +58,7 @@ class PostEditView(UpdateView):
         pk = self.kwargs["pk"]
         return reverse_lazy('post-detail', kwargs={"pk": pk})
 
-class PostDeldtdView(DeleteView):
+class PostDeleteView(DeleteView):
     model = Post
     template_name = "social/post_delete.html"
     success_url = reverse_lazy("post-list")
