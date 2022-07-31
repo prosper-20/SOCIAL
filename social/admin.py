@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment
+from .models import Post, Comment, UserProfile
 
 # Register your models here.
 
@@ -14,4 +14,8 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Comment, CommentAdmin)
+
+
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ["user", "birthday", "location"]
 
