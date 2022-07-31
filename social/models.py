@@ -2,7 +2,6 @@ from distutils.command.upload import upload
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from numpy import blackman
 
 
 class Post(models.Model):
@@ -28,7 +27,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, primary_key=True, verbose_name="user", related_name="profile", on_delete=models.CASCADE)
     name = models.CharField(max_length=100, blank=True, null=True)
     bio = models.TextField(max_length=500, blank=True, null=True)
-    birth_day = models.DateField(null=True, blamk=True)
+    birth_day = models.DateField(null=True, blank=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     picture = models.ImageField(default="uploads/profile_pictures.jpg", upload_to="uploads/profile_pictures", blank=True)
 
