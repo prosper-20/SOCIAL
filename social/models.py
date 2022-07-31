@@ -29,7 +29,7 @@ class UserProfile(models.Model):
     bio = models.TextField(max_length=500, blank=True, null=True)
     birth_day = models.DateField(null=True, blank=True)
     location = models.CharField(max_length=100, blank=True, null=True)
-    picture = models.ImageField(default="uploads/profile_pictures.jpg", upload_to="uploads/profile_pictures", blank=True)
+    picture = models.ImageField(default="uploads/default.jpg", upload_to="uploads/profile_pictures", blank=True)
 
     def __str__(self):
         return self.user.username
