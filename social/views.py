@@ -122,7 +122,7 @@ class ProfileView(View):
             'posts': posts
         }
 
-        return render(request, 'socail/profile.html')
+        return render(request, 'social/profile.html')
         
 
 
