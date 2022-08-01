@@ -122,7 +122,7 @@ class ProfileView(View):
             'posts': posts
         }
 
-        return render(request, 'social/profile.html')
+        return render(request, 'social/profile.html', context)
         
 
 
