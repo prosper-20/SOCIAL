@@ -35,6 +35,9 @@ class UserProfile(models.Model):
     birth_day = models.DateField(null=True, blank=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     picture = models.ImageField(default="uploads/default.jpg", upload_to="uploads/profile_pictures", blank=True)
+    followers = models.ManyToManyField(User, blank=True, related_name="followers")
+
+
 
     def __str__(self):
         return self.user.username
