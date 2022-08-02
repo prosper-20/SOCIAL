@@ -133,7 +133,7 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def get_success_url(self):
         pk = self.kwargs["pk"]
-        return reverse_lazy('profile', kwargs={"pk": pk}))
+        return reverse_lazy('profile', kwargs={"pk": pk})
 
     def test_func(self):
         profile = self.get_object()
