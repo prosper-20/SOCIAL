@@ -120,11 +120,19 @@ class ProfileView(View):
 
         number_of_followers = len(followers)
 
+        for follower in followers:
+            if follower == request.user:
+                is_following = True
+                break
+            else:
+                is_following = False
+
         context = {
             'user': user,
             'profile': profile,
             'posts': posts,
-            "number_of_followers": number_of_followers
+            "number_of_followers": number_of_followers,
+            "is_following": is_following
         }
 
         return render(request, 'social/profile.html', context)
