@@ -1,7 +1,7 @@
 from django.urls import path
 
 from social.models import Post
-from .views import PostListView, PostDetailView, PostEditView, PostDeleteView, CommentDeleteView, ProfileView, ProfileEditView
+from .views import PostListView, PostDetailView, PostEditView, PostDeleteView, CommentDeleteView, ProfileView, ProfileEditView, AddFollower
 
 urlpatterns = [
     path("", PostListView.as_view(), name="post-list"),

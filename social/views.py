@@ -1,7 +1,5 @@
-from distutils.log import Log
-from turtle import pos
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from .models import Post, Comment, UserProfile
 from django.urls import reverse_lazy
@@ -140,4 +138,12 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return self.request.user == profile.user
 
             
+
+class AddFollower(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        profile = UserProfile.objects.get(pk=pk)
+        profile.followers.add(request.user)
+
+
+        return redirect("profile", pk=profile.pk)
 
