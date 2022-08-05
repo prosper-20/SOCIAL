@@ -1,3 +1,4 @@
+import profile
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, redirect
 from django.views import View
@@ -115,10 +116,15 @@ class ProfileView(View):
         user = profile.user
         posts = Post.objects.filter(author=user).order_by('-created_on')
 
+        followers = profile.followers.all()
+
+        number_of_followers = len(followers)
+
         context = {
             'user': user,
             'profile': profile,
-            'posts': posts
+            'posts': posts,
+            "number_of_followers": number_of_followers
         }
 
         return render(request, 'social/profile.html', context)
@@ -147,3 +153,10 @@ class AddFollower(LoginRequiredMixin, View):
 
         return redirect("profile", pk=profile.pk)
 
+
+class RemoveFollower(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        profile = UserProfile.objects.get(pk=pk)
+        profile.follower.ermove(request.user)
+
+        return redirect("profile", pk=profile.pk)
