@@ -168,6 +168,6 @@ class AddFollower(LoginRequiredMixin, View):
 class RemoveFollower(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
         profile = UserProfile.objects.get(pk=pk)
-        profile.follower.ermove(request.user)
+        profile.followers.remove(request.user)
 
         return redirect("profile", pk=profile.pk)
