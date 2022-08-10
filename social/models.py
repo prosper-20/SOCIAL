@@ -13,6 +13,10 @@ class Post(models.Model):
     body = models.TextField()
     created_on = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    likes = models.ManyToManyField(User, blank=True, related_name="likes")
+    dislikes = models.ManyToManyField(User, blank=True, related_name="dislikes")
+    
+
 
     def __str__(self):
         return self.body
