@@ -139,6 +139,24 @@ class ProfileView(View):
         }
 
         return render(request, 'social/profile.html', context)
+
+    
+class AddLike(LoginRequiredMixin, View):
+    def post(self, request, pk, *args, **kwargs):
+        post = Post.objects.get(pk=pk)
+
+        is_like = False
+
+        for like in post.likes.all():
+            if like == request.user:
+                is_like = True
+                break
+        
+        if not is_like:
+            post.like.add(request.user)
+        
+        if is_like:
+            post.likes.remove(request.user)
         
 
 class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
