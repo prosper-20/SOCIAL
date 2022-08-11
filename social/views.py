@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from .models import Post, Comment, UserProfile
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 from .forms import PostForm, CommentForm
 from django.views.generic.edit import UpdateView, DeleteView
 # Create your views here.
@@ -163,10 +164,13 @@ class AddLike(LoginRequiredMixin, View):
                 break
         
         if not is_like:
-            post.like.add(request.user)
+            post.likes.add(request.user)
         
         if is_like:
             post.likes.remove(request.user)
+
+        next = request.POST.get('next', "/")
+        return HttpResponseRedirect(next)
 
 class DislikeView(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
@@ -194,6 +198,9 @@ class DislikeView(LoginRequiredMixin, View):
 
         if is_dislike:
             post.dislikes.remove(request.user)
+
+        next = request.POST.get('next', "/")
+        return HttpResponseRedirect(next)
 
         
 
