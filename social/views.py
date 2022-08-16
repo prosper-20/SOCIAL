@@ -244,4 +244,8 @@ class UserSearch(View):
             Q(user__username__icontains=query)
         )
 
-        
+        context = {
+            'profile_list': profile_list,
+        }
+
+        return render(request, 'social/search.html', context)
