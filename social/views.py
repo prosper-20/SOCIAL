@@ -6,6 +6,7 @@ from .models import Post, Comment, UserProfile
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from .forms import PostForm, CommentForm
+from django.db.models import Q
 from django.views.generic.edit import UpdateView, DeleteView
 # Create your views here.
 
@@ -234,3 +235,13 @@ class RemoveFollower(LoginRequiredMixin, View):
         profile.followers.remove(request.user)
 
         return redirect("profile", pk=profile.pk)
+
+
+class UserSearch(View):
+    def get(self, request, *args, **kwargs):
+        query = self.request.GET.get("query")
+        profile_list = UserProfile.objects.filter(
+            Q(user__username__icontains=query)
+        )
+
+        
