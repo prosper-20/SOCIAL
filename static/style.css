@@ -3,3 +3,11 @@
     background-color: transparent;
     box-shadow: none;
 }
+
+.edit-color {
+    color: #333;
+}
+
+.post-link {
+    text-decoration: none;
+}
