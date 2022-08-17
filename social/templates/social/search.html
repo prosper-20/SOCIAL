@@ -13,7 +13,7 @@
             <div class="col-md-5 col-sm-12 border-bottom position-relative">
                 <div>
                     <a href="{% url 'profile' profile.pk %}"></a>
-                    <img class="rounded-circle post-img" height="30" width="30" src="{{ post.author.profile.picture.url }}" alt="">
+                    <img class="rounded-circle post-img" height="30" width="30" src="{{ profile.picture.url }}" alt="">
                     <p class="post-text">
                         <a href="{% url 'profile' profile.pk %}" class="text-primary post-link">@{{ profile.user }} </a></p>
                 </div> 
