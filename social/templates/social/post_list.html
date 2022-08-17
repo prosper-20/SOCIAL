@@ -43,7 +43,7 @@
                 <form action="{% url 'dislike' post.pk %}" method="POST">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{{ request.path }}">
-                    <button type="submit" style="background-color: transparent; border: none; box-shadow: none">
+                    <button type="submit" class="remove-default-btn">
                         <i class="far fa-thumbs-down"> <span>{{ post.dislikes.all.count }}</span></i>
                     </button>
                 </form>
