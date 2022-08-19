@@ -264,4 +264,4 @@ class ListFollowers(View):
             "profile": profile,
             "followers": followers
         }
-        return render(request, "social/followers-list.html", context)
+        return render(request, "social/followers_list.html", context)
