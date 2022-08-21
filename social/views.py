@@ -199,40 +199,40 @@ class AddCommentLike(LoginRequiredMixin, View):
                 break
         
         if not is_like:
-            post.likes.add(request.user)
+            comment.likes.add(request.user)
         
         if is_like:
-            post.likes.remove(request.user)
+            comment.likes.remove(request.user)
 
         next = request.POST.get('next', "/")
         return HttpResponseRedirect(next)
 
 class AddCommentDisLike(LoginRequiredMixin, View):
     def post(self, request, pk, *args, **kwargs):
-        post = Post.objects.get(pk=pk)
+        comment = Comment.objects.get(pk=pk)
 
         is_dislike = False
 
-        for dislike in post.dislikes.all():
+        for dislike in comment.dislikes.all():
             if dislike == request.user:
                 is_dislike = True
                 break
 
         if is_dislike:
-            post.dislikes.remove(request.user)
+            comment.dislikes.remove(request.user)
 
         is_like = False
 
-        for like in post.likes.all():
-            if like == request.user:
-                is_like = True
+        for dislike in comment.likes.all():
+            if dislike == request.user:
+                is_dislike = True
                 break
         
-        if not is_like:
-            post.likes.add(request.user)
+        if not is_dislike:
+            comment.likes.add(request.user)
         
-        if is_like:
-            post.likes.remove(request.user)
+        if is_dislike:
+            comment.likes.remove(request.user)
 
         next = request.POST.get('next', "/")
         return HttpResponseRedirect(next)
