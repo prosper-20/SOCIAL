@@ -1,4 +1,5 @@
 from distutils.command.upload import upload
+from operator import truediv
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
@@ -27,6 +28,8 @@ class Comment(models.Model):
     created_on = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
+    likes = models.ManyToManyField(User, blank=True, related_name="comment_likes")
+    dislikes = models.ManyToManyField(User, blank=True, related_name="comment_dislikes")
 
     def __str__(self):
         return f"{self.comment} - {self.author}"
