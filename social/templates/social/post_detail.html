@@ -71,6 +71,24 @@
             <a href="{% url 'comment-delete' post.pk comment.pk %}" class="edit-color"><i class="fas fa-trash"></i></a>
             {% endif %}
             <p>{{ comment.comment }}</p>
+
+            <div class="d-flex flex-row">
+                <form action="{% url 'comment-like' post.pk comment.pk %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button type="submit" class="remove-default-btn">
+                        <i class="far fa-thumbs-up"></i>
+                    </button>
+                </form>
+
+                <form action="{% url 'dislike' post.pk %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="next" value="{{ request.path }}">
+                    <button type="submit" class="remove-default-btn">
+                        <i class="far fa-thumbs-down"></i>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
     {% endfor %}
