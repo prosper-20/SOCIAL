@@ -1,4 +1,5 @@
 {% extends 'landing/base.html' %}
+{% lkoad static %}
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -89,9 +90,20 @@
                     </button>
                 </form>
                 <div>
-                    <button class="remove-defualt-btn"><i class="far fa-comment-dots"></i></button>
+                    <button class="remove-default-btn"><i class="far fa-comment-dots"></i></button>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3 mb-5 d-none">
+        <div class="col-md-5 col-sm-12">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success mt-3">Submit</button>
+                </div>
+            </form>
         </div>
     </div>
     {% endfor %}
@@ -99,5 +111,5 @@
 </div>
 
 
-    
+<script type="text/javascript" src="{% static 'js/social.js' %}"></script>
 {% endblock content %}
