@@ -30,6 +30,7 @@ class Comment(models.Model):
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
     likes = models.ManyToManyField(User, blank=True, related_name="comment_likes")
     dislikes = models.ManyToManyField(User, blank=True, related_name="comment_dislikes")
+    parent = models.ForeignKey("self", on_delete=models.CASCADE, null=True, related_name="+")
 
     def __str__(self):
         return f"{self.comment} - {self.author}"
