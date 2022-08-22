@@ -1,5 +1,5 @@
 {% extends 'landing/base.html' %}
-{% lkoad static %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -90,7 +90,7 @@
                     </button>
                 </form>
                 <div>
-                    <button class="remove-default-btn"><i class="far fa-comment-dots"></i></button>
+                    <button class="remove-default-btn"><i class="far fa-comment-dots" onclick="commentReplyToggle( '{{ comment.pk }}')"></i></button>
                 </div>
             </div>
         </div>
